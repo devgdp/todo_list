@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_const_constructors_in_immutables
 
 import 'package:flutter/material.dart';
 import 'package:to_do_list/models/todo.dart';
@@ -70,6 +70,7 @@ class _TodoListPageState extends State<TodoListPage> {
                       for (Todo todo in tasks)
                         TodoListItem(
                           todo: todo,
+                          onDelete: onDelete,
                         ),
                     ],
                   ),
@@ -99,5 +100,11 @@ class _TodoListPageState extends State<TodoListPage> {
         ),
       ),
     );
+  }
+
+  void onDelete(Todo todo) {
+    setState(() {
+      tasks.remove(todo);
+    });
   }
 }
