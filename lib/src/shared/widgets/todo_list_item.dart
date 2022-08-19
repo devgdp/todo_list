@@ -3,7 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
-import 'package:to_do_list/models/todo.dart';
+
+import '../models/todo.dart';
 
 class TodoListItem extends StatelessWidget {
   const TodoListItem({
@@ -13,7 +14,7 @@ class TodoListItem extends StatelessWidget {
   }) : super(key: key);
 
   final Todo todo;
-  final Function(Todo) onDelete;
+  final Function()? onDelete;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,7 @@ class TodoListItem extends StatelessWidget {
           motion: ScrollMotion(),
           children: [
             SlidableAction(
-              onPressed: onDelete(todo),
+              onPressed: onDelete!(),
               backgroundColor: Colors.red,
               foregroundColor: Colors.white,
               icon: Icons.delete,
