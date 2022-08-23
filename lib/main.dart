@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:to_do_list/pages/todo_list_page.dart';
+import 'package:get/get.dart';
 
-void main() {
+import 'src/config/routes/app_pages.dart';
+import 'src/core/helpers/app_helper.dart';
+import 'src/features/app/presentations/bindings/app_binding.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  AppBinding().dependencies();
+
   runApp(const MyApp());
 }
 
@@ -10,9 +17,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
+      navigatorObservers: [AppHelper.routeObserver],
       debugShowCheckedModeBanner: false,
-      home: TodoListPage(),
+      title: 'Todo List',
+      getPages: AppPages.pages,
+      initialBinding: AppBinding(),
+      initialRoute: AppRoutes.APP,
     );
   }
 }
